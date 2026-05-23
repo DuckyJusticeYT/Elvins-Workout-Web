@@ -848,6 +848,220 @@
     letter-spacing: 1px;
   }
 
+  /* QUOTE BANNER */
+  .quote-banner {
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, rgba(232,255,0,0.03) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    animation: fadeQuote 0.8s ease;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-banner:hover {
+    border-color: rgba(232,255,0,0.5);
+    background: linear-gradient(135deg, rgba(232,255,0,0.06) 0%, transparent 60%);
+  }
+
+  @keyframes fadeQuote {
+    from { opacity: 0; transform: translateX(-8px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .quote-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+    opacity: 0.5;
+    margin-top: 2px;
+  }
+
+  .quote-text {
+    flex: 1;
+  }
+
+  .quote-text blockquote {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+
+  .quote-text cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .quote-refresh {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .quote-banner:hover .quote-refresh { opacity: 1; }
+
+  /* CONFETTI CANVAS */
+  #confettiCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* WORKOUT COMPLETE OVERLAY */
+  .complete-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 600;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .complete-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .complete-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px 40px;
+    text-align: center;
+    max-width: 400px;
+    width: calc(100% - 48px);
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .complete-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(232,255,0,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .complete-overlay.show .complete-card { transform: scale(1); }
+
+  .complete-emoji {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    display: block;
+    animation: bounceIn 0.6s 0.3s both;
+  }
+
+  @keyframes bounceIn {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .complete-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 4px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .complete-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--muted2);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .complete-stats {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .complete-stat {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    min-width: 90px;
+  }
+
+  .complete-stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+
+  .complete-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--muted2);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .complete-quote {
+    font-family: 'DM Sans', sans-serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--muted2);
+    margin-bottom: 28px;
+    line-height: 1.5;
+    padding: 0 8px;
+  }
+
+  .complete-close {
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    padding: 14px 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+  }
+
+  .complete-close:hover { background: #fff; }
+
   /* Responsive */
   @media (max-width: 640px) {
     header { padding: 14px 16px; }
@@ -878,6 +1092,17 @@
 
   <!-- ===== TODAY VIEW ===== -->
   <div class="view active" id="view-today">
+
+    <!-- MOTIVATIONAL QUOTE BANNER -->
+    <div class="quote-banner" id="quoteBanner" onclick="refreshQuote()" title="Click for a new quote">
+      <div class="quote-icon">💬</div>
+      <div class="quote-text">
+        <blockquote id="quoteText"></blockquote>
+        <cite id="quoteAuthor"></cite>
+      </div>
+      <span class="quote-refresh">↻ new quote</span>
+    </div>
+
     <div class="today-header">
       <div class="today-title">
         <span>Session</span>
@@ -943,6 +1168,20 @@
       <button class="modal-close" onclick="document.getElementById('detailModal').classList.remove('open')">✕</button>
     </div>
     <div class="modal-body" id="detailModalBody"></div>
+  </div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<!-- WORKOUT COMPLETE OVERLAY -->
+<div class="complete-overlay" id="completeOverlay">
+  <div class="complete-card">
+    <span class="complete-emoji">🏆</span>
+    <div class="complete-title">Crushed It!</div>
+    <div class="complete-sub" id="completeDate"></div>
+    <div class="complete-stats" id="completeStats"></div>
+    <div class="complete-quote" id="completeQuote"></div>
+    <button class="complete-close" onclick="closeCompleteOverlay()">Back to Training</button>
   </div>
 </div>
 
@@ -1244,17 +1483,175 @@ function addExercise(name, muscle) {
 }
 
 // ============================================================
+//  MOTIVATIONAL QUOTES
+// ============================================================
+const QUOTES = [
+  { text: "The only bad workout is the one that didn't happen.", author: "Unknown" },
+  { text: "Strength does not come from the body. It comes from the will.", author: "Unknown" },
+  { text: "Pain is temporary. Quitting lasts forever.", author: "Lance Armstrong" },
+  { text: "The clock is ticking. Are you becoming the person you want to be?", author: "Greg Plitt" },
+  { text: "If it doesn't challenge you, it won't change you.", author: "Fred DeVito" },
+  { text: "Your body can stand almost anything. It's your mind you have to convince.", author: "Unknown" },
+  { text: "Don't stop when you're tired. Stop when you're done.", author: "Unknown" },
+  { text: "Success usually comes to those who are too busy to be looking for it.", author: "Henry David Thoreau" },
+  { text: "Push yourself, because no one else is going to do it for you.", author: "Unknown" },
+  { text: "The harder you work for something, the greater you'll feel when you achieve it.", author: "Unknown" },
+  { text: "Wake up with determination. Go to bed with satisfaction.", author: "Unknown" },
+  { text: "You don't have to be extreme, just consistent.", author: "Unknown" },
+  { text: "Discipline is choosing between what you want now and what you want most.", author: "Augusta F. Kantra" },
+  { text: "Champions keep playing until they get it right.", author: "Billie Jean King" },
+  { text: "It never gets easier. You just get stronger.", author: "Unknown" },
+  { text: "One rep at a time. One day at a time.", author: "Unknown" },
+  { text: "The body achieves what the mind believes.", author: "Unknown" },
+  { text: "Fall down seven times, stand up eight.", author: "Japanese Proverb" },
+  { text: "What hurts today makes you stronger tomorrow.", author: "Jay Cutler" },
+  { text: "You are one workout away from a good mood.", author: "Unknown" },
+  { text: "Train insane or remain the same.", author: "Unknown" },
+  { text: "Your only limit is you.", author: "Unknown" },
+  { text: "Sweat is just fat crying.", author: "Unknown" },
+  { text: "Strive for progress, not perfection.", author: "Unknown" },
+  { text: "Be stronger than your strongest excuse.", author: "Unknown" },
+  { text: "No shortcuts. No excuses. Just results.", author: "Unknown" },
+  { text: "Iron is the best antidepressant I have ever found.", author: "Henry Rollins" },
+  { text: "A year from now you'll wish you had started today.", author: "Karen Lamb" },
+  { text: "The pain you feel today will be the strength you feel tomorrow.", author: "Unknown" },
+  { text: "Every rep counts. Every set matters.", author: "Unknown" },
+];
+
+let lastQuoteIdx = -1;
+
+function getRandomQuote() {
+  let idx;
+  do { idx = Math.floor(Math.random() * QUOTES.length); } while (idx === lastQuoteIdx);
+  lastQuoteIdx = idx;
+  return QUOTES[idx];
+}
+
+function renderQuote(q) {
+  const banner = document.getElementById('quoteBanner');
+  const textEl = document.getElementById('quoteText');
+  const authorEl = document.getElementById('quoteAuthor');
+  // Fade out, swap, fade in
+  banner.style.opacity = '0';
+  banner.style.transform = 'translateX(-6px)';
+  banner.style.transition = 'opacity 0.25s, transform 0.25s';
+  setTimeout(() => {
+    textEl.textContent = `"${q.text}"`;
+    authorEl.textContent = `— ${q.author}`;
+    banner.style.opacity = '1';
+    banner.style.transform = 'translateX(0)';
+  }, 250);
+}
+
+function refreshQuote() {
+  renderQuote(getRandomQuote());
+}
+
+// ============================================================
+//  CONFETTI ENGINE
+// ============================================================
+const confettiCanvas = document.getElementById('confettiCanvas');
+const ctx = confettiCanvas.getContext('2d');
+let confettiParticles = [];
+let confettiRAF = null;
+
+const CONFETTI_COLORS = ['#e8ff00','#ff4d00','#39ff6e','#00c8ff','#ff3bff','#ffffff','#ffcc00'];
+
+function resizeCanvas() {
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function spawnConfetti(count = 160) {
+  confettiParticles = [];
+  for (let i = 0; i < count; i++) {
+    confettiParticles.push({
+      x: Math.random() * confettiCanvas.width,
+      y: -10 - Math.random() * 200,
+      w: 6 + Math.random() * 8,
+      h: 3 + Math.random() * 5,
+      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+      vx: (Math.random() - 0.5) * 4,
+      vy: 2 + Math.random() * 4,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.25,
+      opacity: 1,
+      life: 180 + Math.floor(Math.random() * 120),
+      age: 0,
+      shape: Math.random() > 0.4 ? 'rect' : 'circle',
+    });
+  }
+}
+
+function animateConfetti() {
+  ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  confettiParticles = confettiParticles.filter(p => p.age < p.life);
+
+  confettiParticles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.07; // gravity
+    p.vx *= 0.99;
+    p.angle += p.spin;
+    p.age++;
+    p.opacity = p.age > p.life * 0.7 ? 1 - (p.age - p.life * 0.7) / (p.life * 0.3) : 1;
+
+    ctx.save();
+    ctx.globalAlpha = p.opacity;
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.angle);
+    ctx.fillStyle = p.color;
+
+    if (p.shape === 'circle') {
+      ctx.beginPath();
+      ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+    }
+    ctx.restore();
+  });
+
+  if (confettiParticles.length > 0) {
+    confettiRAF = requestAnimationFrame(animateConfetti);
+  } else {
+    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    confettiRAF = null;
+  }
+}
+
+function launchConfetti() {
+  if (confettiRAF) cancelAnimationFrame(confettiRAF);
+  spawnConfetti(180);
+  // Second burst after 400ms
+  setTimeout(() => { spawnConfetti(120); confettiParticles.push(...confettiParticles); }, 400);
+  animateConfetti();
+}
+
+// ============================================================
 //  FINISH WORKOUT
 // ============================================================
 function finishWorkout() {
   if (session.exercises.length === 0) { showToast('Add exercises first!'); return; }
+
+  // Gather stats before archiving
+  let totalSets = 0, totalVol = 0;
+  session.exercises.forEach(ex => ex.sets.forEach(s => {
+    if (s.done) { totalSets++; totalVol += (parseFloat(s.weight)||0)*(parseInt(s.reps)||0); }
+  }));
+
   archiveSession(session);
   session = createFreshSession();
   saveToday(session);
   renderToday();
   renderHistory();
   renderStats();
-  showToast('Workout saved! 💪');
+
+  // Show complete overlay
+  showCompleteOverlay(session.exercises.length || totalSets, totalSets, totalVol);
 }
 
 function archiveSession(s) {
@@ -1267,6 +1664,33 @@ function archiveSession(s) {
     exercises: JSON.parse(JSON.stringify(s.exercises))
   });
   saveHistory(hist);
+}
+
+function showCompleteOverlay(exCount, sets, volume) {
+  const now = new Date();
+  document.getElementById('completeDate').textContent =
+    now.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'}).toUpperCase();
+
+  document.getElementById('completeStats').innerHTML = `
+    <div class="complete-stat"><div class="complete-stat-val">${exCount}</div><div class="complete-stat-label">Exercises</div></div>
+    <div class="complete-stat"><div class="complete-stat-val">${sets}</div><div class="complete-stat-label">Sets Done</div></div>
+    ${volume > 0 ? `<div class="complete-stat"><div class="complete-stat-val">${volume >= 1000 ? (volume/1000).toFixed(1)+'k' : volume}</div><div class="complete-stat-label">kg Volume</div></div>` : ''}
+  `;
+
+  const q = getRandomQuote();
+  document.getElementById('completeQuote').textContent = `"${q.text}" — ${q.author}`;
+
+  const overlay = document.getElementById('completeOverlay');
+  overlay.classList.add('show');
+
+  // Confetti after a tiny delay so the card animation plays first
+  setTimeout(launchConfetti, 200);
+}
+
+function closeCompleteOverlay() {
+  document.getElementById('completeOverlay').classList.remove('show');
+  if (confettiRAF) { cancelAnimationFrame(confettiRAF); confettiRAF = null; }
+  ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
 }
 
 // ============================================================
@@ -1494,6 +1918,7 @@ document.getElementById('detailModal').addEventListener('click', function(e) {
 renderHeader();
 renderExerciseList('');
 renderToday();
+renderQuote(getRandomQuote());
 </script>
 </body>
 </html>
